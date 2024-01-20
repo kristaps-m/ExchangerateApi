@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Currency Converter</title>
+</head>
+
+<body>
+  <div class="converter-container">
+    <div class="input-row">
+      <div class="input-group">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" placeholder="Enter amount">
+      </div>
+
+      <div class="input-group">
+        <label for="from">From:</label>
+        <select id="fromValue"></select>
+      </div>
+
+      <div class="input-group">
+        <button onclick="swapit()">Swap</button>
+      </div>
+
+      <div class="input-group">
+        <label for="to">To:</label>
+        <select id="toValue"></select>
+      </div>
+    </div>
+
+    <div class="convert-row">
+      <button onclick="convert()">Convert</button>
+    </div>
+
+    <div id="result-container">
+      <p id="amountResult"></p>
+      <p id="result" style="font-weight: bold;"></p>
+      <p id="exchange-rate"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Currency Converter</title>
+</head>
+<body>
+    <div class="converter-container">
+      <div class="g-row">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" placeholder="Enter amount">
+      </div>
+      <div class="g-row">
+        <label for="from">From:</label>
+        <select id="fromValue">
+          Add your currency options dynamically if needed
+
+        </select>
+      </div>
+      <div class="g-row"><button onclick="swapit()">swap</button></div>
+      <div class="g-row">
+        <label for="to">To:</label>
+        <select id="toValue">
+          Add your currency options dynamically if needed
+
+        </select>
+      </div>
+
+        <button onclick="convert()">Convert</button>
+
+        <div id="result-container">
+            <p id="result"></p>
+            <p id="exchange-rate"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> -->
