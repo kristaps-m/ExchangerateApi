@@ -11,10 +11,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services
-//    .AddRefitClient<IGetExchangerates>()
-//    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://v6.exchangerate-api.com/"));
-
 var apiSettings = builder.Configuration.GetSection("ApiSettings");
 var apiKey = apiSettings.GetValue<string>("ExchangeRatesApiKey");
 builder.Services.AddRefitClient<IGetExchangerates>()
@@ -34,10 +30,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// http://127.0.0.1:8080
 app.UseCors(options =>
 {
-    options.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://127.0.0.1:8080");
+    options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
 });
 
 app.UseAuthorization();

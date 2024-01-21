@@ -43,34 +43,3 @@ button {
 .light-gray {
   color: #888;
 }
-
-/* body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-.converter-container {
-  text-align: center;
-  display: grid;
-  max-width: 80%;
-}
-
-.g-row{
-  grid-row: 1
-}
-
-label,
-input,
-select,
-button {
-  margin: 8px 0;
-  display: block;
-}
-
-#result-container {
-  margin-top: 20px;
-} */
