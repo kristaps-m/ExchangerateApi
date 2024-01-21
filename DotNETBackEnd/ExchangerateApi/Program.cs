@@ -1,4 +1,6 @@
 using Exchangerate.Integration;
+using ExchangerateApi;
+using ExchangerateApi.Classes;
 using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,14 +12,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IApiKeyEnvirometSettings, EnvirometSettings>();
 
 var apiSettings = builder.Configuration.GetSection("ApiSettings");
 var apiKey = apiSettings.GetValue<string>("ExchangeRatesApiKey");
 builder.Services.AddRefitClient<IGetExchangerates>()
-        .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://v6.exchangerate-api.com/"))
-        .ConfigureHttpClient(c => c.DefaultRequestHeaders.Add("Accept", "application/json"))
-        .ConfigureHttpClient(c => c.DefaultRequestHeaders.Add("User-Agent", "ExchangerateApi"))
-        .ConfigureHttpClient(c => c.DefaultRequestHeaders.Add("apikey", apiKey));
+    .ConfigureHttpClient(c => {
+        c.BaseAddress = new Uri("https://v6.exchangerate-api.com/");
+        c.DefaultRequestHeaders.Add("Accept", "application/json");
+        c.DefaultRequestHeaders.Add("User-Agent", "ExchangerateApi");
+        c.DefaultRequestHeaders.Add("apikey", apiKey);
+    });
 
 var app = builder.Build();
 

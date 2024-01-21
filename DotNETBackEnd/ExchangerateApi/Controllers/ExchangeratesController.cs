@@ -8,20 +8,23 @@ namespace ExchangerateApi.Controllers
     public class ExchangeratesController : ControllerBase
     {
         private readonly IGetExchangerates _exchangerates;
-        private readonly IConfiguration _configuration;
+        //private readonly IConfiguration _configuration;
+        private readonly IApiKeyEnvirometSettings _apiKeyEnviromentSettings;
 
-        public ExchangeratesController(IConfiguration configuration, IGetExchangerates exchangerates)
+        public ExchangeratesController(IApiKeyEnvirometSettings apiKeyEnviromentSettings, IGetExchangerates exchangerates)
         {
-            _configuration = configuration;
+            //_configuration = configuration;
             _exchangerates = exchangerates;
+            _apiKeyEnviromentSettings = apiKeyEnviromentSettings;
         }
 
         [HttpGet]
         [Route("{currency}")]
         public async Task<IActionResult> GetExchangeratesByCurrency(string currency)
         {
-            var apiSettings = _configuration.GetSection("ApiSettings");
-            var apiKey = apiSettings.GetValue<string>("ExchangeRatesApiKey");
+            //var apiSettings = _configuration.GetSection("ApiSettings");
+            //var apiKey = apiSettings.GetValue<string>("ExchangeRatesApiKey");
+            var apiKey = _apiKeyEnviromentSettings.ApiKey;
             try
             {
                 var result = await _exchangerates.GetExchangeratesByCurrency(apiKey, currency);
@@ -37,8 +40,9 @@ namespace ExchangerateApi.Controllers
         [Route("exchange")]
         public async Task<IActionResult> GetExchangeResultByCurrenciesAndAmount(string cFrom, string cTo, double amount)
         {
-            var apiSettings = _configuration.GetSection("ApiSettings");
-            var apiKey = apiSettings.GetValue<string>("ExchangeRatesApiKey");
+            //var apiSettings = _configuration.GetSection("ApiSettings");
+            //var apiKey = apiSettings.GetValue<string>("ExchangeRatesApiKey");
+            var apiKey = _apiKeyEnviromentSettings.ApiKey;
             try
             {
                 var result = await _exchangerates.GetExchangeResultByCurrenciesAndAmount(apiKey, cFrom, cTo, amount);
